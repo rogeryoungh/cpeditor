@@ -145,7 +145,7 @@ jobs:
           cd third_party/syntax-highlighting
           mkdir build
           cd build &&
-            cmake .. -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF  &&
+            cmake .. -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=C:/ &&
             cmake --build . --config Release --parallel $(nproc) &&
             cmake --build . --target install
 
@@ -164,7 +164,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -D "KF5SyntaxHighlighting_DIR=C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -D "KF5SyntaxHighlighting_DIR=C:/ECM/lib/cmake/KF5SyntaxHighlighting"
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
@@ -320,7 +320,7 @@ jobs:
           mkdir build/out
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
-          cp "C:/Program Files (x86)/ECM/bin/KF5SyntaxHighlighting.dll" build/out
+          cp "C:/ECM/bin/KF5SyntaxHighlighting.dll" build/out
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
