@@ -145,7 +145,7 @@ jobs:
           cd third_party/syntax-highlighting
           mkdir build
           cd build &&
-            cmake .. -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=C:/ &&
+            cmake .. -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=C:/ECM &&
             cmake --build . --config Release --parallel $(nproc) &&
             cmake --build . --target install
 
