@@ -23,6 +23,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
+find_package(KF5SyntaxHighlighting REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -158,6 +159,15 @@ add_executable(cpeditor
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
+    src/Editor/CodeEditor.cpp
+    src/Editor/CodeEditor.hpp
+    src/Editor/CodeEditorSideBar.cpp
+    src/Editor/CodeEditorSideBar.hpp
+    src/Editor/KSHRepository.cpp
+    src/Editor/KSHRepository.hpp
+    src/Editor/LanguageRepository.cpp
+    src/Editor/LanguageRepository.hpp
+
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
     src/Extensions/ClangFormatter.cpp
@@ -166,8 +176,6 @@ add_executable(cpeditor
     src/Extensions/CodeFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
-    src/Extensions/EditorTheme.cpp
-    src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
     src/Extensions/WakaTime.cpp
@@ -213,8 +221,6 @@ add_executable(cpeditor
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
-    src/Util/QCodeEditorUtil.cpp
-    src/Util/QCodeEditorUtil.hpp
     src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
@@ -268,13 +274,13 @@ include_directories("generated/")
 include_directories("src/")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
+target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
@@ -297,5 +303,4 @@ if(UNIX AND NOT APPLE)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
   install(FILES dist/linux/cpeditor.appdata.xml DESTINATION share/metainfo)
 endif()
-
 
