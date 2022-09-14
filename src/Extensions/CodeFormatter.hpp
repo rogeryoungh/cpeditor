@@ -19,6 +19,7 @@
 #define CODEFORMATTER_HPP
 
 #include <QObject>
+#include "Editor/CodeEditor.hpp"
 
 class MessageLogger;
 class QCodeEditor;
@@ -31,7 +32,7 @@ class CodeFormatter : public QObject
     Q_OBJECT
 
   public:
-    explicit CodeFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+    explicit CodeFormatter(Editor::CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                            MessageLogger *log, QObject *parent = nullptr);
 
     void format() const;
@@ -91,14 +92,14 @@ class CodeFormatter : public QObject
     QVariant getSetting(const QString &key) const;
 
   private:
-    QCodeEditor *m_editor;
+    Editor::CodeEditor *m_editor;
     QString m_lang;
     bool m_selectionOnly;
     bool m_logOnNoChange;
     int m_cursorPos, m_cursorLine, m_cursorCol, m_anchorPos, m_anchorLine, m_anchorCol;
 
   protected:
-    QCodeEditor *editor() const
+    Editor::CodeEditor *editor() const
     {
         return m_editor;
     }
