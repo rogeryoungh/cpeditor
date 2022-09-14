@@ -760,7 +760,6 @@ void MainWindow::setLanguage(const QString &lang)
     if (language != "Python" && language != "Java")
         language = "C++";
     editor->applySettings(language);
-    //    Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     updateCompileAndRunButtons();
