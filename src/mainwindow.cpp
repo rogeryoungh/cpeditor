@@ -36,7 +36,6 @@
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
-#include "Editor/CodeEditor.hpp"
 #include <QFileSystemWatcher>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -761,7 +760,7 @@ void MainWindow::setLanguage(const QString &lang)
     if (language != "Python" && language != "Java")
         language = "C++";
     editor->applySettings(language);
-//    Util::applySettingsToEditor(editor, language);
+    //    Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     updateCompileAndRunButtons();

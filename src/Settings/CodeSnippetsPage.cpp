@@ -16,10 +16,10 @@
  */
 
 #include "Settings/CodeSnippetsPage.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
-#include "Editor/CodeEditor.hpp"
 #include <QInputDialog>
 #include <QLabel>
 #include <QListWidget>

@@ -18,8 +18,8 @@
 #ifndef CODEFORMATTER_HPP
 #define CODEFORMATTER_HPP
 
-#include <QObject>
 #include "Editor/CodeEditor.hpp"
+#include <QObject>
 
 class MessageLogger;
 class QCodeEditor;

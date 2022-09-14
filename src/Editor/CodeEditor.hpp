@@ -42,8 +42,8 @@
 #ifndef CODEEDITOR_HPP
 #define CODEEDITOR_HPP
 
-#include <QPlainTextEdit>
 #include <KSyntaxHighlighting/Theme>
+#include <QPlainTextEdit>
 #include <utility>
 
 namespace KSyntaxHighlighting

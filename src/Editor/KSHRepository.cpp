@@ -16,8 +16,8 @@
  */
 
 #include "Editor/KSHRepository.hpp"
-#include <QStringList>
 #include <KSyntaxHighlighting/Theme>
+#include <QStringList>
 
 namespace Editor
 {

@@ -46,6 +46,8 @@
 #include "Editor/LanguageRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <KSyntaxHighlighting/Definition>
+#include <KSyntaxHighlighting/SyntaxHighlighter>
 #include <QApplication>
 #include <QFontDatabase>
 #include <QMimeData>
@@ -57,8 +59,6 @@
 #include <QTextCharFormat>
 #include <QTextStream>
 #include <QToolTip>
-#include <KSyntaxHighlighting/Definition>
-#include <KSyntaxHighlighting/SyntaxHighlighter>
 
 namespace Editor
 {
@@ -115,8 +115,8 @@ void CodeEditor::applySettings(const QString &lang)
     }
     else
     {
-        setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
-            SettingsHelper::getEditorTheme()));
+        setTheme(
+            KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(SettingsHelper::getEditorTheme()));
     }
     if (vimCursor())
         return;
