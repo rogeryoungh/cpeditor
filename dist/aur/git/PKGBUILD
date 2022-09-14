@@ -34,7 +34,7 @@ source=('git+https://github.com/cpeditor/cpeditor.git'
     'git+https://github.com/MikeMirzayanov/testlib.git'
     'git+https://github.com/cpeditor/qhttp.git')
 
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
     cd "$_pkgname"
