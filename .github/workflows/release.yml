@@ -1,6 +1,9 @@
 name: "Release"
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - "*"
 
 env:
   QT_VERSION: 5.15.2
