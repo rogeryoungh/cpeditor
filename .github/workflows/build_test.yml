@@ -45,6 +45,29 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
+      # https://www.blumia.net/2020/07/31/Setting-Up-KDE-Craft-CI-Environment-Manually-Under-Windows.html
+      - name: "[Windows] Download KTextEditor"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          git clone https://github.com/KDE/craftmaster.git C:\CraftMaster
+          function craft() {
+            & python "C:\CraftMaster\CraftMaster.py" --config .craft-master.ini --target win64_msvc2019_64 -c $args
+            if($LASTEXITCODE -ne 0) {exit $LASTEXITCODE}
+          }
+          craft craft
+          craft ktexteditor
+
+      - name: "[Linux] Download KTextEditor"
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          sudo apt-get install extra-cmake-modules libkf5texteditor-dev
+
+      - name: "[macOS] Download KTextEditor"
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
+          brew install kde-mac/kde/kf5-ktexteditor
+
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
@@ -54,6 +77,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
+          $env:Path="$env:Path;C:/CraftRoot/bin;C:/CraftRoot/dev-utils/bin;C:/CraftRoot/msys/mingw64/bin"
           cmake -B build -S . -D USE_CLANG_TIDY=On
           cmake --build build -j4 --config Release
 

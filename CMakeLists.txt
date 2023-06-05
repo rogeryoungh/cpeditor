@@ -24,6 +24,11 @@ find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
+find_package(ECM REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+message(STATUS ${CMAKE_MODULE_PATH})
+find_package(KF5TextEditor REQUIRED)
+
 add_subdirectory(third_party/QCodeEditor)
 
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
@@ -276,6 +281,7 @@ target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
+target_link_libraries(cpeditor PRIVATE KF5::TextEditor)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
