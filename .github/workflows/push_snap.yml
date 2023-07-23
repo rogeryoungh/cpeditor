@@ -2,24 +2,15 @@ name: "Update Snap"
 
 on:
   push:
-    branches:
-      - master
-    paths-ignore:
-      - ".github/**"
-      - "!.github/workflows/push_snap.yml"
-      - "**.md"
-      - ".all-contributorsrc"
-      - ".gitignore"
+  workflow_dispatch:
 
 jobs:
   snap:
     name: "Update Snap"
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'cpeditor'
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: master
           submodules: recursive
           fetch-depth: 0
 
